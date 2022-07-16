@@ -107,15 +107,15 @@ class UserView(ListAPIView):
 
     def delete(self,request):
         try:
-            id = self.request.POST.get('id','[]')
+            id = self.request.data['id']
         except:
-            id = []
+            id = ""
        
         if id:
             try:
                 
-                id = json.loads(id)
-                objects = UserDetailsModel.objects.filter(id__in=id)
+                # id = json.loads(id)
+                objects = UserDetailsModel.objects.filter(id=id)
 
                 if objects.count():
                     objects.delete()
