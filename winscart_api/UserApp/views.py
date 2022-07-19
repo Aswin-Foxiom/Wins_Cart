@@ -75,6 +75,13 @@ class UserView(ListAPIView):
             mandatory = ['username','password','mobile','usertype','showpassword']
             data = Validate(self.request.data,mandatory)
             if data == True:
+                username_check = UserDetailsModel.objects.filter(username = self.request.data['username'])
+
+                if username_check.count():
+                    return Response({
+                        "Status" : status.HTTP_406_NOT_ACCEPTABLE,
+                        "Message" : "Username Already Registered"
+                    })
                
                 try:      
                     
