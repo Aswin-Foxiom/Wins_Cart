@@ -8,5 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('UserApp/',include('UserApp.urls')),
     path('Country/',include('CountryApp.urls')),
+    path('resetpassword/',include('Resetpassword.urls')),
+
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
